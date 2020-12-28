@@ -162,6 +162,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../assets/style/style.less';
   .product-list{
     height: 100%;
     .p_product-list{
@@ -169,7 +170,7 @@ export default {
       height: calc(100% - 72px);
       overflow: auto;
       .p_product-list_top{
-        background: #ffffff;
+        background: @top-bg;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 50, 0.04);
         .p_l_t_container{
           max-width: 1056px;
@@ -203,7 +204,7 @@ export default {
         margin: 0 auto;
         padding: 15px 0 25px 0;
         .list_card{
-          background: #ffffff;
+          background: @car-bg;
           box-shadow: 0 12px 20px 0 rgba(0, 0, 50, 0.12);
           margin-bottom: 12px;
           padding: 24px 10px 24px 40px;

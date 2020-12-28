@@ -83,6 +83,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../assets/style/style.less';
 .categories{
   height: 100%;
 }
@@ -91,7 +92,7 @@ export default {
   height: calc(100% - 72px);
   overflow: auto;
   .categories_top{
-    background: #ffffff;
+    background: @top-bg;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 50, 0.04);
     .c_t_container{
       max-width: 1056px;
@@ -115,7 +116,7 @@ export default {
     margin: 0 auto;
     min-height: calc(100% - 210px);
     .left_categories{
-      background: #ffffff;
+      background:@car-bg;
       padding: 28px 24px;
       h3{
         margin-top: 0;
@@ -137,7 +138,7 @@ export default {
       }
     }
     .right_categories{
-      background: #ffffff;
+      background:@car-bg;
       padding: 28px 24px;
       .right_row{
         margin-bottom: 15px;

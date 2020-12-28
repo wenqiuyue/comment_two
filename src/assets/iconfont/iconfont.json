@@ -494,6 +494,13 @@
       "font_class": "lanlvtubiaozhizuomoban-03",
       "unicode": "e60a",
       "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "70041252",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e7a8",
+      "unicode_decimal": 59304
     }
   ]
 }

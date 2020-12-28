@@ -14,13 +14,13 @@
         <div class="b_type">
           <div class="type_card" v-for="(item,index) in hotType" :key="item.id" @click="handleProList(item)">
             <div class="type_card_icon">
-              <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.6"></svg-icon>
+              <svg-icon value="icon-fenlei" :size="1.6"></svg-icon>
             </div>
             <div class="type_card_text">{{item.name}}</div>
           </div>
           <div class="type_card" @click="goCategories">
             <div class="type_card_icon">
-              <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.6"></svg-icon>
+              <svg-icon value="icon-fenlei" :size="1.6"></svg-icon>
             </div>
             <div class="type_card_text">More</div>
           </div>
@@ -153,7 +153,7 @@ export default {
   height: calc(100% - 72px);
   overflow: auto;
   .banner{
-    background: url("~@/assets/images/banner.png") no-repeat;
+    background: url("~@/assets/images/banner.jpg") no-repeat;
     height: 600px;
     width: 100%;
     background-size:cover;
@@ -163,16 +163,17 @@ export default {
       margin-left: 20%;
       .title_1{
         margin-bottom: 12px;
+        color: #ffffff;
       }
       .title_2{
         font-size: 1.25rem;
-        color: #454554;
+        color: #E7E9E9;
         margin-bottom: 40px;
         font-weight: 500;
       }
       .title_3{
         font-size: 1rem;
-        color: #454554;
+        color:  #E7E9E9;
         margin-bottom: 30px;
         font-weight: 500;
       }
@@ -233,7 +234,7 @@ export default {
     }
   }
   .recent_reviews{
-    background-color: rgb(220, 220, 230);
+    background-color: #F9F8F6;
     width: 100%;
     .r_r_title{
       text-align: center;
@@ -258,6 +259,7 @@ export default {
           margin-bottom: 10px;
           padding: 22px 15px 22px 22px;
           width: calc(100% - 37px);
+          box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
           .c_title{
             display: flex;
             flex-direction: row;
@@ -300,13 +302,14 @@ export default {
     }
   }
   .be_heard{
-    background-color:rgb(245, 233, 247);
+    background-color:#444D5C;
     padding: 88px 24px 80px;
     .heard_title{
       text-align: center;
       font-size: 2.875rem;
       margin-top: 0;
       margin-bottom: 16px;
+      color: #C7C6C9;
     }
     .heard_text{
       text-align: center;
@@ -316,6 +319,7 @@ export default {
       font-size: 1.25rem;
       line-height: 1.75rem;
       max-width: 750px;
+      color: #C7C6C9;
     }
     .what_do{
       text-align: center;
@@ -325,11 +329,12 @@ export default {
       }
       .el-button--gone:hover
       {
-        background: #000032;
+        background:#C7C6C9;
         color: #ffffff;
+        border-color: #C7C6C9;
       }
       .el-button--gone{
-        background: rgb(245, 233, 247);
+        background:#444D5C;
         color: #000032;
       }
     }
@@ -340,7 +345,7 @@ export default {
       height: calc(100% - 72px);
       overflow: auto;
       .banner{
-        background: url("~@/assets/images/banner.png") no-repeat;
+        background: url("~@/assets/images/banner.jpg") no-repeat;
         height: auto;
         .c_banner{
           padding: 1rem;

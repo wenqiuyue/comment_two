@@ -19,9 +19,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../assets/style/style.less';
 .footer{
-    background: #000032;
-    color: #ffffff;
+    background:@main-color;
+    color: #333333;
     padding: 1px 0 28px 0;
     .b_share{
       text-align: center;
@@ -31,7 +32,7 @@ export default {
       text-align: center;
       a{
         margin-left: 3px;
-        color: #ffffff;
+        color: #333333;
         border-bottom: 1px dotted #ddd;
         text-decoration:none
       }

@@ -218,6 +218,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../assets/style/style.less';
 .write-review{
   height: 100%;
   .w_write-review{
@@ -225,7 +226,7 @@ export default {
     height: calc(100% - 72px);
     overflow: auto;
     .write-review_top{
-      background: #ffffff;
+      background: @top-bg;;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 50, 0.04);
       .t_container{
         max-width: 510px;
@@ -267,7 +268,7 @@ export default {
     }
     .write-review_main{
       max-width: 510px;
-      background: #ffffff;
+      background: @car-bg;
       margin: 16px auto;
       padding: 24px 24px 1px;
       h2{

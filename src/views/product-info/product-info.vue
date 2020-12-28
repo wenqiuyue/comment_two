@@ -532,6 +532,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../assets/style/style.less';
 .share_title{
   color: #333333;
   font-weight: bold;
@@ -553,7 +554,7 @@ export default {
     height: calc(100% - 72px);
     overflow: auto;
     .p_product-info_top{
-      background: #ffffff;
+      background: @top-bg;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 50, 0.04);
       .p_info_t_container{
           max-width: 1056px;
