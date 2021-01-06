@@ -501,6 +501,41 @@
       "font_class": "fenlei",
       "unicode": "e7a8",
       "unicode_decimal": 59304
+    },
+    {
+      "icon_id": "70523107",
+      "name": "greenFlowerBG",
+      "font_class": "greenFlowerBG",
+      "unicode": "e76f",
+      "unicode_decimal": 59247
+    },
+    {
+      "icon_id": "70532557",
+      "name": "web栏目条_热门评论",
+      "font_class": "weblanmutiao_remenpinglun",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "70532558",
+      "name": "评论",
+      "font_class": "pinglun1",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
+      "icon_id": "70532559",
+      "name": "icon_评论",
+      "font_class": "icon_pinglun",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "70532560",
+      "name": "回复评论s",
+      "font_class": "huifupingluns",
+      "unicode": "e651",
+      "unicode_decimal": 58961
     }
   ]
 }

@@ -27,7 +27,7 @@
             :icon-classes="iconClasses"
             void-icon-class="iconfont icon-pingfendengjiRating4"
             allow-half
-            :colors="['#FF3722', '#FFCE00','#00B67A']">
+            :colors="['#FF3722', '#FF8622','#FFCE00']">
           </el-rate>
           <h2>Tell us about your experience</h2>
           <el-form-item prop="Content">

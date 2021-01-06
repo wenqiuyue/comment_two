@@ -39,9 +39,9 @@
             </div>
           </div>
         </div>
-        <empty v-else :tips="'暂无数据'"></empty>
+        <empty v-else :tips="'No data available'"></empty>
       </div>
-      <div class="page">
+      <div class="page" v-if="pageData.pageNum>1">
         <el-pagination
           layout="prev, pager, next"
           :page-count="pageData.pageNum"

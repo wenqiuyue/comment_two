@@ -4,7 +4,7 @@
     v-model="value"
     :icon-classes="iconClasses"
     void-icon-class="iconfont icon-pingfendengjiRating4"
-    :colors="['#FF3722', '#FFCE00','#00B67A']"
+    :colors="['#FF3722', '#FF8622','#FFCE00']"
     :disabled="isDisabled"
     disabled-void-color="rgb(198, 209, 222)"
     disabled-void-icon-class="iconfont icon-pingfendengjiRating4"

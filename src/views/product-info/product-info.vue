@@ -7,7 +7,7 @@
           <div class="left_container">
             <el-image
               :src="processDetails.Cover"
-              fit="cover">
+              fit="contain">
               <div slot="error" class="error_img_tips">
                 Failed to load 
               </div>
@@ -33,7 +33,7 @@
                 <span class="r_c_num">Earn</span>
               </div>
               <div class="r_c_operation">
-                <svg-icon :value="likeProList.indexOf(processDetails.Id)==-1?'icon-xihuan1':'icon-xihuan'" :size="1.5" @click="handleLike"></svg-icon>
+                <svg-icon :value="likeProList.indexOf(processDetails.Id)==-1?'icon-xihuan1':'icon-xihuan'" :size="1.5" @click="handleLike" v-preventReClick></svg-icon>
                 <span class="r_c_num">{{processDetails.Likes}}</span>
               </div>
               <div class="r_c_operation">
@@ -49,7 +49,7 @@
                 <span class="r_c_num r_c_num_share">{{processDetails.Shares}}</span>
               </div>
             </div>
-            <el-button size="mini" type="success" plain @click="handleHomePage">Visit Homepage</el-button>
+            <el-button size="mini" type="warning" plain @click="handleHomePage">Visit Homepage</el-button>
             <!-- <el-button size="mini" type="primary" plain>Relevant Articles</el-button> -->
           </div>
         </div>
@@ -59,7 +59,7 @@
           <el-col :span="16" :xs="24">
             <div class="left_main_introduce">
               <div class="introduce_title">
-                <svg-icon value="icon--1" :size="1.8"></svg-icon>
+                <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.8"></svg-icon>
                 <h2>What is the {{processDetails.Name}}</h2>
               </div>
               <p :class="isEllipsis&&isMoreRow?'introduce_container c_ellipsis':'introduce_container'" ref="description">{{processDetails.Description?processDetails.Description.replace(/&lt;.+?&gt;/g, ''):'No introduction'}}</p>
@@ -70,7 +70,7 @@
             </div>
             <div class="left_main_top">
               <div class="top_left">
-                <svg-icon value="icon-bianpinghuatubiaosheji-" :size="1.8"></svg-icon>
+                <svg-icon value="icon-pinglun1" :size="1.8"></svg-icon>
                 <span class="w_text" @click="handleWriteReview">Write a review</span>
               </div>
               <el-rate
@@ -78,14 +78,14 @@
                 :icon-classes="iconClasses"
                 void-icon-class="iconfont icon-pingfendengjiRating4"
                 allow-half
-                :colors="['#FF3722', '#FFCE00','#00B67A']"
+                :colors="['#FF3722', '#FF8622','#FFCE00']"
                 @change="rateChange"
                 >
               </el-rate>
             </div>
             <div class="left_main_review">
               <div class="left_main_review_title">
-                <svg-icon value="icon--1" :size="1.8"></svg-icon>
+                <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.8"></svg-icon>
                 <h2> Reviews <span class="num">{{processDetails.CommentCount?processDetails.CommentCount:0}}</span>
                 </h2>
               </div>
@@ -95,17 +95,17 @@
                 <div class="card_user">
                   <el-avatar size="large" :src="item.Icon"></el-avatar>
                   <span class="user_name">{{item.Name}}</span>
-                </div>
-                <div class="score_date">
                   <rate :value="item.Rank" :isDisabled="true"></rate>
-                  <span class="date">{{item.Time?dateEnglish(item.Time):'--:--'}}</span>
                 </div>
                 <p class="card_text" v-html="item.Content"></p>
-                <div class="card_bottom">
-                  <el-tooltip class="item" effect="dark" content="Useful" placement="top-start">
-                    <svg-icon value="icon-xihuan1" :size="1.3" :style="likeReviewList.indexOf(`${processDetails.Id}-${item.ComentId}`)==-1?'color:#aaa':'color:#f56c6c'" @click="handleUseFul(item,index)"></svg-icon>
-                  </el-tooltip>
-                  <span>({{item.Likes}})</span>
+                <div class="score_date">
+                  <div class="card_bottom">
+                    <el-tooltip class="item" effect="dark" content="Useful" placement="top-start">
+                      <svg-icon value="icon-xihuan1" :size="1.3" :style="likeReviewList.indexOf(`${processDetails.Id}-${item.ComentId}`)==-1?'color:#aaa':'color:#f56c6c'" @click="handleUseFul(item,index)" v-preventReClick></svg-icon>
+                    </el-tooltip>
+                    <span>({{item.Likes}})</span>
+                  </div>
+                  <span class="date">{{item.Time?dateEnglish(item.Time):'--:--'}}</span>
                 </div>
               </div>
               <div class="left_page" v-if="commentPage.pageNum>1">
@@ -142,7 +142,7 @@
                 </el-dropdown>
               </div>
             </div>
-            <el-button class="add_comparison_button" type="primary" plain @click="handleAddComparison">Add Into Comparison</el-button>
+            <el-button class="add_comparison_button" type="warning" plain @click="handleAddComparison">Add Into Comparison</el-button>
             <div class="right_comparison">
               <div class="comparison_list_title">
                 <svg-icon value="icon-cebianlan-bijiao-xuanzhong" :size="1.3"></svg-icon>
@@ -199,7 +199,7 @@
                   <div class="card_left">Infomations</div>
                     <div class="card_right">
                       <span class="c_r_span">
-                        <svg-icon value="icon-bianpinghuatubiaosheji-"></svg-icon>
+                        <svg-icon value="icon-pinglun1"></svg-icon>
                         <span>Reviews ({{processDetails.CommentCount}})</span>
                       </span>
                       <span class="c_r_span" v-if="processDetails.Price">
@@ -250,6 +250,7 @@
   </div>
 </template>
 <script>
+import preventReClick from '../../utils/plugins';
 import types from '../../commons/types';
 import {dateEnglish} from '../../commons';
 export default {
@@ -271,7 +272,8 @@ export default {
         pageSize: 5,
         pageNum: 0,
       },
-      isMoreRow:false //产品介绍是否需要显示更多
+      isMoreRow:false, //产品介绍是否需要显示更多
+      isClick:false //是否点击
     }
   },
   created(){
@@ -418,9 +420,10 @@ export default {
      */
     handleUseFul(com,index){
       //该评论点过赞，则退出
-       if(this.likeReviewList.indexOf(`${this.processDetails.Id}-${com.ComentId}`)!=-1){
+       if(this.likeReviewList.indexOf(`${this.processDetails.Id}-${com.ComentId}`)!=-1 || this.isClick){
         return;
       }
+      this.isClick=true;
       this.$apiHttp.fabulous({params:{Id:com.ComentId}}).then((resp)=>{
         if(resp.res==200){
           this.$message({
@@ -432,6 +435,7 @@ export default {
           localStorage.setItem(types.LIKE_REVIEW, JSON.stringify(this.likeReviewList));
           this.productComment[index].Likes = this.productComment[index].Likes + 1;
         }
+        this.isClick=false;
       })
     },
     /**
@@ -448,9 +452,10 @@ export default {
      * 喜欢
      */
     handleLike(){
-      if(this.likeProList.indexOf(this.processDetails.Id)!=-1){
+      if(this.likeProList.indexOf(this.processDetails.Id)!=-1 || this.isClick){
         return;
       }
+      this.isClick=true;
       const data={
         proId:this.processDetails.Id
       }
@@ -465,6 +470,7 @@ export default {
           localStorage.setItem(types.LIKE_PROID, JSON.stringify(this.likeProList));
           this.processDetails.Likes=this.processDetails.Likes+1;
         }
+        this.isClick=false;
       })
     },
     /**
@@ -532,7 +538,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '../../assets/style/style.less';
 .share_title{
   color: #333333;
   font-weight: bold;
@@ -554,7 +559,7 @@ export default {
     height: calc(100% - 72px);
     overflow: auto;
     .p_product-info_top{
-      background: @top-bg;
+      background: #ffffff;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 50, 0.04);
       .p_info_t_container{
           max-width: 1056px;
@@ -610,6 +615,7 @@ export default {
                 flex-direction: column;
                 align-items: center;
                 .r_c_num{
+                  user-select: none;
                   font-size: 0.75rem;
                   margin-top: 3px;
                   color: #666666;
@@ -652,6 +658,7 @@ export default {
             color: #32323d;
             margin: 0;
             margin-left: 5px;
+            user-select: none;
           }
         }
         .introduce_container{
@@ -661,6 +668,7 @@ export default {
           color: #515174;
           line-height: 1.5rem;
           word-break: break-all;
+          user-select: none;
         }
         .c_ellipsis{
           display: -webkit-box;
@@ -700,6 +708,7 @@ export default {
             font-size: 0.875rem;
             color: #1a66ff;
             margin-left: 6px;
+            user-select: none;
             cursor: pointer;
             &:hover{
               text-decoration:underline;
@@ -743,9 +752,8 @@ export default {
           display: flex;
           align-items: center;
           padding-bottom: 16px;
-          border-bottom: 1px solid #e8e8eb;
           .user_name{
-            margin-left: 8px;
+            margin: 0 10px 0 8px;
             font-size: 0.875rem;
             color: #454554;
           }
@@ -755,7 +763,7 @@ export default {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          padding: 13px 0;
+          padding-top: 13px;
           /deep/.el-rate__icon{
             font-size: 1.2rem;
           }
@@ -1074,8 +1082,8 @@ export default {
           }
           .el-button--product:hover{
             background: #ffffff;
-            color:#67c23a;
-            border: 1px solid#67c23a;
+            color:#409eff;
+            border: 1px solid#409eff;
           }
         }
       }

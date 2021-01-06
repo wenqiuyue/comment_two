@@ -57,7 +57,7 @@ export default {
         {td:"COVER",icon:'',key:'Cover'},
         {td:"RELEASE TIME",icon:'',key:'Time'},
         {td:"PRICE",icon:'',key:'Price'},
-        {td:"Reviews",icon:'icon-bianpinghuatubiaosheji-',key:'CommentCount'},
+        {td:"Reviews",icon:'icon-pinglun1',key:'CommentCount'},
         {td:"Likes",icon:'icon-xihuan',key:'Likes'},
         // {td:"Commission",icon:'',key:'Commissions'},
       ]
@@ -137,10 +137,10 @@ export default {
         align-items: center;
         justify-content: center;
         padding: 10px 0;
-        background: #ecf5ff;
-        border: 1px solid #409eff;
+        background: #fdf6ec;
+        border: 1px solid#e6a23c;
         border-radius: 5px;
-        color: #409eff;
+        color: #e6a23c;
         span{
           margin-left: 5px;
         }
@@ -163,7 +163,7 @@ export default {
             text-align: center;
             font-weight: normal;
             span{
-              color:#409eff;
+              color:#e6a23c;
               cursor: pointer;
               &:hover{
                 color: #60bf39;

@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
 import components from './components'; // 自定义模板
+import preventReClick from './utils/plugins'
 import * as _ from 'lodash'
 import * as api from './api/index';
 
@@ -14,6 +15,7 @@ import './tools/extend';
 
 Vue.use(ElementUI);
 Vue.use(components);
+Vue.use(preventReClick);
 Vue.prototype.$apiHttp = api;
 
 Vue.config.productionTip = false

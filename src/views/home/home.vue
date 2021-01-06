@@ -8,46 +8,68 @@
         <h2 class="title_2">Read reviews. Write reviews. Find products.</h2>
         <div class="b_search">
           <el-input class="s_input" v-model="searchData" placeholder="Search for a company or category…"></el-input>
-          <el-button class="s_button" type="primary" icon="el-icon-search" @click="handleSearch">Search</el-button>
+          <el-button class="s_button" type="success" icon="el-icon-search" @click="handleSearch" plain>Search</el-button>
         </div>
         <h2 class="title_3">Browse products by category</h2>
         <div class="b_type">
           <div class="type_card" v-for="(item,index) in hotType" :key="item.id" @click="handleProList(item)">
-            <div class="type_card_icon">
-              <svg-icon value="icon-fenlei" :size="1.6"></svg-icon>
-            </div>
+            <svg-icon value="icon-greenFlowerBG" :size="7.7"></svg-icon>
             <div class="type_card_text">{{item.name}}</div>
           </div>
           <div class="type_card" @click="goCategories">
-            <div class="type_card_icon">
-              <svg-icon value="icon-fenlei" :size="1.6"></svg-icon>
-            </div>
+            <svg-icon value="icon-greenFlowerBG" :size="7.7"></svg-icon>
             <div class="type_card_text">More</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="recent_reviews">
-      <div class="r_r_title">Recent reviews</div>
-      <div class="r_r_reviews" v-if="hotReview && hotReview.length>0">
-        <div class="r_r_r_card" v-for="(item,index) in hotReview" :key="index">
-          <div class="r_r_r_c_card" v-for="(review,ind) in item" :key="ind">
-            <div class="c_title">
-              <el-avatar class="c_t_img" size="large" :src="review.Icon"></el-avatar>
-              <rate
-                class="c_t_rate"
-                :value="review.Rank"
-                :isDisabled="true"
-              >
-              </rate>
+    <div class="recent_reviews pc" @click="clickCard($event)">
+      <!-- <div class="r_r_title">Recent reviews</div> -->
+      <title-circle :title="'Recent reviews'" :number="'1'" :textWidth="'150px'"></title-circle>
+      <vue-seamless-scroll v-if="hotReview && hotReview.length>0" :data="hotReview" :class-option="defaultOption" class="seamless-warp">
+        <div class="r_r_reviews" >
+          <div class="r_r_r_card" v-for="(item,index) in hotReview" :key="index">
+            <div class="r_r_r_c_card" v-for="(review,ind) in item" :key="ind">
+              <div class="c_title">
+                <el-avatar class="c_t_img" size="large" :src="review.Icon"></el-avatar>
+                <rate
+                  class="c_t_rate"
+                  :value="review.Rank"
+                  :isDisabled="true"
+                >
+                </rate>
+              </div>
+              <p class="c_user">{{review.Name}} <span class="rev">reviewed</span> <span :data-pro="JSON.stringify(review)" :id="review.ComentId"  class="pro">{{review.ProName}}</span></p>
+              <p class="c_text">
+                {{review.Content}}
+              </p>
             </div>
-            <p class="c_user">{{review.Name}} <span class="rev">reviewed</span> <span @click="handleProInfo(review)" class="pro">{{review.ProName}}</span></p>
-            <p class="c_text">
-              {{review.Content}}
-            </p>
           </div>
         </div>
-      </div>
+      </vue-seamless-scroll>
+      <empty v-else :tips="'No hot comments'" :paddingData="3"></empty>
+    </div>
+    <div class="recent_reviews phone">
+      <title-circle :title="'Recent reviews'" :number="'1'" :textWidth="'150px'"></title-circle>
+        <div class="r_r_reviews" v-if="hotReview && hotReview.length>0">
+          <div class="r_r_r_card" v-for="(item,index) in hotReview" :key="index">
+            <div class="r_r_r_c_card" v-for="(review,ind) in item" :key="ind">
+              <div class="c_title">
+                <el-avatar class="c_t_img" size="large" :src="review.Icon"></el-avatar>
+                <rate
+                  class="c_t_rate"
+                  :value="review.Rank"
+                  :isDisabled="true"
+                >
+                </rate>
+              </div>
+              <p class="c_user">{{review.Name}} <span class="rev">reviewed</span> <span @click="handleProInfo(review)" class="pro">{{review.ProName}}</span></p>
+              <p class="c_text">
+                {{review.Content}}
+              </p>
+            </div>
+          </div>
+        </div>
       <empty v-else :tips="'No hot comments'" :paddingData="3"></empty>
     </div>
     <div class="be_heard">
@@ -75,6 +97,20 @@ export default {
       hotType:null, //热门分类
     }
   },
+  computed: {
+    defaultOption () {
+      return {
+        step: 1, // 数值越大速度滚动越快
+        limitMoveNum: this.hotReview.length, // 开始无缝滚动的数据量 this.dataList.length
+        hoverStop: true, // 是否开启鼠标悬停stop
+        direction: 3, // 0向下 1向上 2向左 3向右
+        openWatch: true, // 开启数据实时监控刷新dom
+        singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+        singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+        waitTime: 1000 // 单步运动停止的时间(默认值1000ms)
+      }
+    }
+},
   mounted(){
     this.getQueryCommentTypeData();
   },
@@ -88,6 +124,21 @@ export default {
         query:{
           Name:item.name,
           Id:item.id
+        }
+      })
+    },
+    clickCard(e){
+      if(!e.target.id){
+        return;
+      }
+      const item = JSON.parse(e.target.dataset.pro);
+      if(!item.ProId){
+        return;
+      }
+      this.$router.push({
+        path:'/product-info',
+        query:{
+          pid:item.ProId
         }
       })
     },
@@ -159,8 +210,8 @@ export default {
     background-size:cover;
     .c_banner{
       padding: 80px 24px 88px;
-      width: 41%;
-      margin-left: 20%;
+      width: 50%;
+      margin: 0 auto;
       .title_1{
         margin-bottom: 12px;
         color: #ffffff;
@@ -200,34 +251,30 @@ export default {
         flex-direction: row;
         justify-content: space-between;
         .type_card{
+          flex-shrink: 0;
+          position: relative;
           cursor: pointer;
-          width: 16%;
-          background-color: white;
           margin-bottom: 8px;
-          box-shadow: 0 2px 2px 0 rgba(0,0,50,0.04);
+          height: 123px;
+          width: 123px;
           display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 20px 5px 12px 5px;
+          justify-content: center;
           .type_card_text{
             font-size: 0.875rem;
-            line-height: 1rem;
-            color: #1b1b1b;
+            font-weight: bold;
+            position: absolute;
+            color: #666666;
             text-align: center;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-
+            height: 123px;
+            width: 100px;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
           }
           .type_card_icon{
             margin-bottom: 0.2rem;
-          }
-          &:hover{
-            .type_card_text{
-              color: #409eff;
-            }
           }
         }
       }
@@ -235,7 +282,10 @@ export default {
   }
   .recent_reviews{
     background-color: #F9F8F6;
-    width: 100%;
+    overflow:hidden;
+    .seamless-warp{
+      height: 480px;
+    }
     .r_r_title{
       text-align: center;
       font-size: 1.25rem;
@@ -244,22 +294,31 @@ export default {
     }
     .r_r_reviews{
       padding: 0 12px;
-      display:-webkit-box;
+      display:flex;
       flex-direction: row;
-      width: calc(100% - 24px);
-      overflow-x: scroll;
+      width: 2160px;
+      &:last-child {
+        margin-right:-143px;
+      }
       .r_r_r_card{
         display: flex;
         flex-direction: column;
         padding-bottom: 15px;
         margin-right: 10px;
-        width: 25%;
+        width: 330px;
+        flex-shrink: 0;
         .r_r_r_c_card{
           background: #ffffff;
           margin-bottom: 10px;
           padding: 22px 15px 22px 22px;
-          width: calc(100% - 37px);
+          width: 290px;
           box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+          transition: transform .6s,box-shadow .6s;
+          cursor: default;
+          &:hover{
+            transform: perspective(1px) scale(1.05);
+            box-shadow: 0 12px 20px 0 rgba(0,0,50,0.12);
+          }
           .c_title{
             display: flex;
             flex-direction: row;
@@ -300,6 +359,13 @@ export default {
         }
       }
     }
+  }
+  .phone{
+    display: none;
+  }
+  .pc{
+    display: flex;
+    flex-direction: column;
   }
   .be_heard{
     background-color:#444D5C;
@@ -380,14 +446,16 @@ export default {
           }
           .b_type{
             padding-top: 0.2rem;
+            flex-wrap: wrap;
             .type_card{
-              width: 17%;
+              width: 30%;
               margin-bottom: 0;
               box-shadow: 0 2px 2px 0 rgba(0,0,50,0.04);
               padding:0.5rem 0.2rem 0.2rem 0.2rem;
               .type_card_text{
                 font-size: 0.75rem;
                 line-height: 1rem;
+                height: 134px;
               }
               .type_card_icon{
                 margin-bottom: 0.1rem;
@@ -396,6 +464,13 @@ export default {
           }
         }
       }
+      .phone{
+        display: flex;
+        flex-direction: column;
+      }
+      .pc{
+        display: none;
+      }
       .recent_reviews{
         .r_r_title{
           font-size: 1.25rem;
@@ -403,7 +478,10 @@ export default {
         }
         .r_r_reviews{
           padding: 0 8px;
+          display:-webkit-box;
           width: calc(100% - 24px);
+          margin-right: 0 !important;
+          overflow-x: scroll;
           .r_r_r_card{
             padding-bottom: 0.8rem;
             margin-right: 0.5rem;
@@ -412,6 +490,12 @@ export default {
               margin-bottom: 0.5rem;
               padding: 1.1rem 0.5rem;
               width: calc(100% - 1rem);
+              transition: transform .6s;
+              cursor: default;
+              &:hover{
+                transform: perspective(0px) scale(1);
+                box-shadow: 0 12px 20px 0 rgba(0,0,50,0.12);
+              }
               .c_title{
                 .c_t_rate{
                   margin-left: 0.5rem;

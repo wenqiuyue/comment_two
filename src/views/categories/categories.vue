@@ -10,7 +10,7 @@
     </div>
     <div class="c_c_categories">
       <el-row :gutter="20">
-        <el-col :span="8" :xs="0">
+        <el-col :span="0" :xs="0">
           <div class="left_categories">
             <h3>View Category</h3>
             <ul>
@@ -18,7 +18,7 @@
             </ul>
           </div>
         </el-col>
-        <el-col :span="16" :xs="24">
+        <el-col :span="24" :xs="24">
           <div class="right_categories">
             <el-row :gutter="20" v-for="(item,index) in typeList" :key="index" class="right_row" :id="index">
               <el-col :span="8"><div class="r_left_categories"><span>{{item.Name}}</span></div></el-col>

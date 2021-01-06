@@ -5,6 +5,7 @@ import Rate from './rate.vue';
 import Empty from './empty.vue';
 import Share from './share.vue';
 import ValidateCode from './validate-code.vue';
+import TitleCircle from './title-circle';
 
 export default {
 	install: Vue => {
@@ -15,5 +16,6 @@ export default {
 		Vue.component(Empty.name, Empty);
 		Vue.component(Share.name, Share);
 		Vue.component(ValidateCode.name, ValidateCode);
+		Vue.component(TitleCircle.name, TitleCircle);
 	}
 };
