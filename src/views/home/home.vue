@@ -24,8 +24,16 @@
       </div>
     </div>
     <div class="recent_reviews pc" @click="clickCard($event)">
-      <!-- <div class="r_r_title">Recent reviews</div> -->
-      <title-circle :title="'Recent reviews'" :number="'1'" :textWidth="'150px'"></title-circle>
+      <div class="r_r_title">
+        <title-circle 
+          :title="'Recent reviews'" 
+          :textWidth="'310px'"
+          :titleFontSize="'40px'"
+          :rightCircleBigSize="'26px'"
+          :rightCircleSmallSize="'21px'" 
+          :leftCircleSize="'25px'">
+        </title-circle>
+      </div>
       <vue-seamless-scroll v-if="hotReview && hotReview.length>0" :data="hotReview" :class-option="defaultOption" class="seamless-warp">
         <div class="r_r_reviews" >
           <div class="r_r_r_card" v-for="(item,index) in hotReview" :key="index">
@@ -50,7 +58,7 @@
       <empty v-else :tips="'No hot comments'" :paddingData="3"></empty>
     </div>
     <div class="recent_reviews phone">
-      <title-circle :title="'Recent reviews'" :number="'1'" :textWidth="'150px'"></title-circle>
+      <title-circle :title="'Recent reviews'"></title-circle>
         <div class="r_r_reviews" v-if="hotReview && hotReview.length>0">
           <div class="r_r_r_card" v-for="(item,index) in hotReview" :key="index">
             <div class="r_r_r_c_card" v-for="(review,ind) in item" :key="ind">
@@ -73,7 +81,20 @@
       <empty v-else :tips="'No hot comments'" :paddingData="3"></empty>
     </div>
     <div class="be_heard">
-      <h1 class="heard_title">About</h1>
+      <div class="pc">
+        <title-circle 
+            :title="'About'" 
+            :textWidth="'145px'"
+            :titleFontSize="'40px'"
+            :rightCircleBigSize="'26px'"
+            :rightCircleSmallSize="'21px'" 
+            :leftCircleSize="'25px'">
+        </title-circle>
+      </div>
+      <div class="phone">
+        <title-circle :title="'About'" :textWidth="'75px'"></title-circle>
+      </div>
+      <!-- <h1 class="heard_title">About</h1> -->
       <p class="heard_text">
         Comment.com is committed to creating the most authentic review platform, where everyone can easily share the most authentic experience. Provide valuable reference for other users.
       </p>
@@ -284,13 +305,10 @@ export default {
     background-color: #F9F8F6;
     overflow:hidden;
     .seamless-warp{
-      height: 480px;
+      // height: 540px;
     }
     .r_r_title{
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 500;
-      padding:45px 0 48px 0;
+      padding:35px 0 25px 0;
     }
     .r_r_reviews{
       padding: 0 12px;
@@ -308,6 +326,7 @@ export default {
         width: 330px;
         flex-shrink: 0;
         .r_r_r_c_card{
+          border-radius: 8px;
           background: #ffffff;
           margin-bottom: 10px;
           padding: 22px 15px 22px 22px;
@@ -368,8 +387,8 @@ export default {
     flex-direction: column;
   }
   .be_heard{
-    background-color:#444D5C;
-    padding: 88px 24px 80px;
+    background-color:#F9F8F6;
+    padding: 10px 24px 80px;
     .heard_title{
       text-align: center;
       font-size: 2.875rem;
@@ -384,8 +403,8 @@ export default {
       margin-bottom: 32px;
       font-size: 1.25rem;
       line-height: 1.75rem;
-      max-width: 750px;
-      color: #C7C6C9;
+      max-width: 780px;
+      color: #434d5b;
     }
     .what_do{
       text-align: center;
@@ -395,12 +414,12 @@ export default {
       }
       .el-button--gone:hover
       {
-        background:#C7C6C9;
-        color: #ffffff;
-        border-color: #C7C6C9;
+        background:#000032;
+        color: #F9F8F6;
+        border-color: #000032;
       }
       .el-button--gone{
-        background:#444D5C;
+        background:#F9F8F6;
         color: #000032;
       }
     }
@@ -487,6 +506,7 @@ export default {
             margin-right: 0.5rem;
             width: 70%;
             .r_r_r_c_card{
+              border-radius: 8px;
               margin-bottom: 0.5rem;
               padding: 1.1rem 0.5rem;
               width: calc(100% - 1rem);
@@ -506,7 +526,7 @@ export default {
         }
       }
       .be_heard{
-        padding: 2rem 1rem 2rem;
+        padding: 0rem 1rem 2rem;
         .heard_title{
           font-size: 2rem;
           margin-bottom: 0;

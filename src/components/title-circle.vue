@@ -1,11 +1,11 @@
 <template>
 	<div class="title-circle">
-		<div class="left-circle" :style="bigCircleColor"></div>
+		<div class="left-circle" :style="leftCircle"></div>
 		<div class="text" :style="`width:${textWidth}`">
-			<span>{{ number }}</span>
-			<div class="title">{{ title }}</div>
+			<!-- <span>{{ number }}</span> -->
+			<div class="title" :style="titleStyle">{{ title }}</div>
 		</div>
-		<div class="left-circle big" :style="bigCircleColor"></div>
+		<div class="left-circle" :style="rightCircleBig"></div>
 		<div class="right-circle" :style="smallCircleColor"></div>
 	</div>
 </template>
@@ -18,18 +18,39 @@ export default {
 		bigColorDeep: { tyep: String, default: '#FFCFDD' },
 		bigColorShallow: { tyep: String, default: '#FFEAF0' },
     smallColor: { tyep: String, default: '#8ec6f9' },
-    textWidth:String
+		textWidth:{type:String,default:'151px'},
+		leftCircleSize:{type:String,default:'15px'},
+		rightCircleBigSize:{type:String,default:'16px'},
+		rightCircleSmallSize:{type:String,default:'11px'},
+		titleFontSize:{type:String,default:'20px'},
 	},
 	computed: {
-		bigCircleColor() {
+		leftCircle() {
 			return {
-				'background-image': `linear-gradient(${this.bigColorDeep}, ${this.bigColorShallow})`
+				'background-image': `linear-gradient(${this.bigColorDeep}, ${this.bigColorShallow})`,
+				'height': `${this.leftCircleSize}`,
+				'width': `${this.leftCircleSize}`
+			};
+		},
+		rightCircleBig() {
+			return {
+				'background-image': `linear-gradient(${this.bigColorDeep}, ${this.bigColorShallow})`,
+				'height': `${this.rightCircleBigSize}`,
+				'width': `${this.rightCircleBigSize}`
 			};
 		},
 		smallCircleColor() {
 			return {
-				background: this.smallColor
+				background: this.smallColor,
+				'height': `${this.rightCircleSmallSize}`,
+				'width': `${this.rightCircleSmallSize}`
 			};
+		},
+		titleStyle(){
+			return {
+				'top': `${this.titleTop}`,
+				'font-size': `${this.titleFontSize}`
+			}
 		}
 	}
 };
@@ -42,35 +63,19 @@ export default {
 	align-items: center;
 	justify-content: center;
 	.left-circle {
-		height: 15px;
-		width: 15px;
 		border-radius: 50%;
 	}
-	.big {
-		height: 16px;
-		width: 16px;
-	}
 	.right-circle {
-		height: 11px;
-		width: 11px;
 		border-radius: 50%;
 		margin-top: 5px;
 		margin-left: -6px;
 		opacity: 0.7;
 	}
 	.text {
-		position: relative;
 		padding: 0 8px;
 		text-align: center;
-		span {
-			font-size: 30px;
-			color: #ebebec;
-		}
 		.title {
-			position: absolute;
-			top: 7px;
 			font-weight: bold;
-			font-size: 20px;
 		}
 	}
 }
