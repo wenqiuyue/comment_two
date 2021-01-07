@@ -4,13 +4,13 @@
   <div class="h_home">
     <div class="banner">
       <div class="c_banner">
-        <h1 class="title_1">Behind every review is an experience that matters</h1>
-        <h2 class="title_2">Read reviews. Write reviews. Find products.</h2>
+        <h1 class="title_1">Behind every comment is the real voice of the user</h1>
+        <h2 class="title_2">Read reviews. Write reviews. Find businesses.</h2>
         <div class="b_search">
           <el-input class="s_input" v-model="searchData" placeholder="Search for a company or category…"></el-input>
           <el-button class="s_button" type="success" icon="el-icon-search" @click="handleSearch" plain>Search</el-button>
         </div>
-        <h2 class="title_3">Browse products by category</h2>
+        <h2 class="title_3">Browse businesses by category</h2>
         <div class="b_type">
           <div class="type_card" v-for="(item,index) in hotType" :key="item.id" @click="handleProList(item)">
             <svg-icon value="icon-greenFlowerBG" :size="7.7"></svg-icon>
@@ -96,7 +96,7 @@
       </div>
       <!-- <h1 class="heard_title">About</h1> -->
       <p class="heard_text">
-        Comment.com is committed to creating the most authentic review platform, where everyone can easily share the most authentic experience. Provide valuable reference for other users.
+        comment.com provides you with millions of valuable user reviews. Sharing your most authentic experience to help customers make better choices.
       </p>
       <div class="what_do"><el-button class="companies" type="gone" plain @click="goCategories">Find out</el-button></div>
     </div>

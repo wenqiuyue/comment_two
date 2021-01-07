@@ -57,7 +57,7 @@ export default {
         {td:"COVER",icon:'',key:'Cover'},
         {td:"RELEASE TIME",icon:'',key:'Time'},
         {td:"PRICE",icon:'',key:'Price'},
-        {td:"Reviews",icon:'icon-pinglun1',key:'CommentCount'},
+        {td:"Reviews",icon:'icon-icon_pinglun',key:'CommentCount'},
         {td:"Likes",icon:'icon-xihuan',key:'Likes'},
         // {td:"Commission",icon:'',key:'Commissions'},
       ]

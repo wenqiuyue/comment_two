@@ -70,7 +70,7 @@
             </div>
             <div class="left_main_top">
               <div class="top_left">
-                <svg-icon value="icon-pinglun1" :size="1.8"></svg-icon>
+                <svg-icon value="icon-icon_pinglun" :size="1.8"></svg-icon>
                 <span class="w_text" @click="handleWriteReview">Write a review</span>
               </div>
               <el-rate
@@ -199,7 +199,7 @@
                   <div class="card_left">Infomations</div>
                     <div class="card_right">
                       <span class="c_r_span">
-                        <svg-icon value="icon-pinglun1"></svg-icon>
+                        <svg-icon value="icon-icon_pinglun"></svg-icon>
                         <span>Reviews ({{processDetails.CommentCount}})</span>
                       </span>
                       <span class="c_r_span" v-if="processDetails.Price">
