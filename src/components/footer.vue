@@ -2,7 +2,7 @@
   <div class="footer">
     <h4 class="b_share">SHARE PAGE</h4>
     <share :url="$route.fullPath"></share>
-    <div class="b_hre">©2020<a href="/">comment.com</a></div>
+    <div class="b_hre">©{{year}}<a href="/">comment.com</a></div>
   </div>
 </template>
 <script>
@@ -11,10 +11,11 @@ export default {
   name:'footer-com',
   data(){
     return{
-      
+      year:null
     }
   },
   created(){
+    this.year=new Date().getFullYear();
   },
 }
 </script>

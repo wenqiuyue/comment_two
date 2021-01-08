@@ -57,36 +57,25 @@
       <div class="p_p-info_main">
         <el-row :gutter="20">
           <el-col :span="16" :xs="24">
-            <div class="left_main_introduce">
-              <div class="introduce_title">
-                <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.8"></svg-icon>
-                <h2>What is the {{processDetails.Name}}</h2>
-              </div>
-              <p :class="isEllipsis&&isMoreRow?'introduce_container c_ellipsis':'introduce_container'" ref="description">{{processDetails.Description?processDetails.Description.replace(/&lt;.+?&gt;/g, ''):'No introduction'}}</p>
-              <div class="more" v-if="isMoreRow">
-                <span @click="isEllipsis=!isEllipsis">{{isEllipsis?'see more':'take back'}}</span>
-                <svg-icon :value="isEllipsis?'icon-z044':'icon-z045'" :size="0.6" :color="'#1a66ff'"></svg-icon>
-              </div>
-            </div>
             <div class="left_main_top">
-              <div class="top_left">
-                <svg-icon value="icon-icon_pinglun" :size="1.8"></svg-icon>
-                <span class="w_text" @click="handleWriteReview">Write a review</span>
+              <div class="write_one"></div>
+              <div class="write_two"></div>
+              <div class="write_three">
+                <div class="t_title">Share your thoughts...</div>
+                <el-rate
+                  v-model="rateValue"
+                  :icon-classes="iconClasses"
+                  void-icon-class="iconfont icon-pingfendengjiRating4"
+                  allow-half
+                  :colors="['#FF3722', '#FF8622','#FFCE00']"
+                  @change="rateChange"
+                  >
+                </el-rate>
               </div>
-              <el-rate
-                v-model="rateValue"
-                :icon-classes="iconClasses"
-                void-icon-class="iconfont icon-pingfendengjiRating4"
-                allow-half
-                :colors="['#FF3722', '#FF8622','#FFCE00']"
-                @change="rateChange"
-                >
-              </el-rate>
             </div>
             <div class="left_main_review">
               <div class="left_main_review_title">
-                <svg-icon value="icon-lanlvtubiaozhizuomoban-03" :size="1.8"></svg-icon>
-                <h2> Reviews <span class="num">{{processDetails.CommentCount?processDetails.CommentCount:0}}</span>
+                <h2> There are {{processDetails.CommentCount?processDetails.CommentCount:0}} Reviews</span>
                 </h2>
               </div>
             </div>
@@ -160,6 +149,14 @@
                   Please choose the same type of product to compare the more detailed data
                 </p>
               </div>  
+            </div>
+            <div class="right_Informations">
+              <h3>What is the {{processDetails.Name}}</h3>
+              <div class="r_r_Informations">
+                <div class="c_row">
+                  <div class="card_left_introduce">{{processDetails.Description?processDetails.Description.replace(/&lt;.+?&gt;/g, ''):'No introduction'}}</div>
+                </div>
+              </div>
             </div>
             <div class="right_img" v-if="processDetails.Images && processDetails.Images.length>0">
               <h3>{{processDetails.Images.length}} Images</h3>
@@ -298,7 +295,7 @@ export default {
      * 相关产品
      */
     handleTypeProductCommand(com){
-      window.open("http://120.25.67.116:8028/product-info?pid="+com);
+      window.open("http://120.25.67.116:8030/product-info?pid="+com);
     },
     /**
      * 评论分数进入写评论
@@ -316,7 +313,7 @@ export default {
      * 跳转产品页
      */
     handleHomePage(url){
-      window.open("http://120.25.67.116:8028/check-page?url="+this.processDetails.Url);
+      window.open("http://120.25.67.116:8030/check-page?url="+this.processDetails.Url);
     },
     /**
      * 产品详情数据初始化
@@ -694,25 +691,39 @@ export default {
         }
       }
       .left_main_top{
-        background: #ffffff;
-        padding: 18px 24px;
-        margin-bottom: 12px;
+        height: 140px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        position: relative;
         align-items: center;
-        .top_left{
-          display: flex;
-          align-items: center;
-          .w_text{
-            font-size: 0.875rem;
-            color: #1a66ff;
-            margin-left: 6px;
-            user-select: none;
-            cursor: pointer;
-            &:hover{
-              text-decoration:underline;
-            }
+        flex-direction: row;
+        background-color: #fff;
+        background-image: linear-gradient(to top, #fdf6ec, #f5dab1);
+        background-repeat: no-repeat;
+        margin-bottom: 3px;
+        .write_one{
+          left: 0;
+          width: 260px;
+          height: 100%;
+          position: absolute;
+          clip-path: circle(76% at 35% 72%);
+          background-color: #fff;
+          -webkit-clip-path: circle(76% at 35% 72%);
+        }
+        .write_two{
+          width: 138px;
+          height: 125px;
+          z-index: 1;
+          margin-left: 44px;
+          margin-right: 112px;
+          background: url('~@/assets/images/write.png') no-repeat;
+          background-size: contain;
+        }
+        .write_three{
+          .t_title{
+            color: #333333;
+            font-size: 24px;
+            margin-bottom: 21px;
+            font-weight: bold;
           }
         }
         .el-rate{
@@ -782,7 +793,7 @@ export default {
           border-bottom: 1px solid #e8e8eb;
           line-height: 1.5rem;
           color: #32323d;
-          user-select: none;
+          // user-select: none;
         }
         .card_bottom{
           display: flex;
@@ -1030,6 +1041,14 @@ export default {
                 }
               }
             }
+            .card_left_introduce{
+              line-height: 1.5rem;
+              word-break: break-all;
+              user-select: none;
+              min-height: 60px;
+              font-size: 14px;
+              color: #555555;
+            }
           }
         }
       }
@@ -1198,16 +1217,30 @@ export default {
           }
         }
         .left_main_top{
-          padding: 1.3rem 1.4rem;
-          margin-bottom: 0.75rem;
-          .top_left{
-            .w_text{
-              font-size: 0.875rem;
-              margin-left: 5px;
+          height: 120px;
+          margin-bottom: 3px;
+          .write_one{
+            left: 0;
+            width: 270px;
+            height: 100%;
+            position: absolute;
+            clip-path: circle(76% at 35% 72%);
+            background-color: #fff;
+            -webkit-clip-path: circle(92% at -16% 130%);
+          }
+          .write_two{
+            width: 167px;
+            height: 80px;
+            margin-left: 12px;
+            margin-right: 20px;
+          }
+          .write_three{
+            .t_title{
+              margin-bottom: 10px;
             }
           }
           /deep/.icon-pingfendengjiRating4{
-            font-size: 1.1rem;
+            font-size: 1.5rem;
           }
         }
         .left_main_review{

@@ -79,7 +79,7 @@ export default {
      * 跳转产品页
      */
     handleHomePage(url){
-      window.open("http://120.25.67.116:8028/check-page?url="+url);
+      window.open("http://120.25.67.116:8030/check-page?url="+url);
     },
     /**
      * 获取比较数据 
