@@ -74,9 +74,18 @@
               </div>
             </div>
             <div class="left_main_review">
-              <div class="left_main_review_title">
-                <h2> There are {{processDetails.CommentCount?processDetails.CommentCount:0}} Reviews</span>
-                </h2>
+              <div class="left_main_review_title pc">
+                <title-circle 
+                  :title="`There are ${processDetails.CommentCount?processDetails.CommentCount:0} Reviews`" 
+                  :textWidth="'270px'"
+                  :titleFontSize="'24px'"
+                  :rightCircleBigSize="'26px'"
+                  :rightCircleSmallSize="'21px'" 
+                  :leftCircleSize="'25px'">
+                </title-circle>
+              </div>
+              <div class="left_main_review_title phone">
+                <title-circle :title="`There are ${processDetails.CommentCount?processDetails.CommentCount:0} Reviews`"  :textWidth="'225px'"></title-circle>
               </div>
             </div>
             <div v-if="productComment && productComment.length>0">
@@ -734,8 +743,7 @@ export default {
         }
       }
       .left_main_review{
-        background: #ffffff;
-        padding: 22px 24px;
+        padding: 0;
         margin-bottom: 2px;
         .left_main_review_title{
           display: flex;
@@ -754,6 +762,15 @@ export default {
             }
           }
         }
+        .phone{
+            display: none;
+          }
+          .pc{
+            display: flex;
+          }
+          .title-circle{
+            padding-left: 0;
+          }
       }
       .left_main_review_card{
         background: #ffffff;
@@ -1244,7 +1261,12 @@ export default {
           }
         }
         .left_main_review{
-          padding: 1.3rem 1.5rem;
+          .pc{
+            display: none;
+          }
+          .phone{
+            display: flex;
+          }
         }
         .left_main_review_card{
           padding: 1.3rem 1.5rem;
