@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="p_product-list_container">
-        <div v-if="proList&&proList.length>0">
+        <div v-if="proList&&proList.length>0" class="card_li">
           <div class="list_card" v-for="(item,index) in proList" :key="index" @click="handleProductInfo(item.Id)">
             <el-image
               :src="item.Cover"
@@ -200,10 +200,16 @@ export default {
       }
       .p_product-list_container{
         min-height: calc(100% - 310px);
-        max-width: 1056px;
         margin: 0 auto;
-        padding: 15px 0 25px 0;
+        padding: 15px 25px 25px;
+        .card_li{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
         .list_card{
+          width: 45%;
           background: @car-bg;
           box-shadow: 0 12px 20px 0 rgba(0, 0, 50, 0.12);
           margin-bottom: 12px;
@@ -295,6 +301,7 @@ export default {
           max-width: 97%;
           padding: 0.5rem 0;
           .list_card{
+            width: 100%;
             box-shadow: 0 2px 3px 0 rgba(0, 0, 50, 0.12);
             margin-bottom: 0.5rem;
             padding: 0.6rem 0.3rem 0.4rem 0.5rem;
