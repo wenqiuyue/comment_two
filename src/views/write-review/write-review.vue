@@ -95,7 +95,7 @@ export default {
         Content:null, //评论内容
         Email:null, //邮箱
         Name:null, //用户名称
-        Icon:'/Images/avt/b07fab35-4ccd-461c-ac7d-c9ca6370049b.png', //用户头像
+        Icon:'/Images/avt/2e33b26c-e748-4c66-b6c8-967a0c37292b.png', //用户头像
         Rank:null, //评分
         Code:null //验证码
       },

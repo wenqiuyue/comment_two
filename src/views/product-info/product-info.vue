@@ -61,7 +61,7 @@
               <div class="write_one"></div>
               <div class="write_two"></div>
               <div class="write_three">
-                <div class="t_title">Share your thoughts...</div>
+                <div class="t_title" @click="handleWriteReview">Share your thoughts...</div>
                 <el-rate
                   v-model="rateValue"
                   :icon-classes="iconClasses"
@@ -291,12 +291,12 @@ export default {
     this.getLikeReviewList();
     this.getInit();
     this.getVoteList();
-    setTimeout(()=>{
-      const row=this.$refs.description.offsetHeight/24
-      if(row>2){
-        this.isMoreRow=true;
-      }
-    },500)
+    // setTimeout(()=>{
+    //   const row=this.$refs.description.offsetHeight/24
+    //   if(row>2){
+    //     this.isMoreRow=true;
+    //   }
+    // },500)
   },
   methods:{
     dateEnglish,
@@ -733,6 +733,10 @@ export default {
             font-size: 24px;
             margin-bottom: 21px;
             font-weight: bold;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
+            }
           }
         }
         .el-rate{
