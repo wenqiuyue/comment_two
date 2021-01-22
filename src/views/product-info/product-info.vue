@@ -214,7 +214,7 @@
                       </span>
                       <span class="c_r_span">
                         <svg-icon value="icon-rili"></svg-icon>
-                        <span>Start in {{processDetails.BirthYear}}</span>
+                        <span>Since {{processDetails.BirthYear}}</span>
                       </span>
                       <span class="c_r_span">
                         <svg-icon value="icon-xihuan"></svg-icon>
