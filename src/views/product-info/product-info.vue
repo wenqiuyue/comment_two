@@ -25,14 +25,6 @@
                 <span class="r_c_num">{{processDetails.BirthYear}}</span>
               </div>
               <div class="r_c_operation">
-                <svg-icon value="icon-qian" :size="1.5"></svg-icon>
-                <span class="r_c_num">${{processDetails.Price}}</span>
-              </div>
-              <div class="r_c_operation">
-                <svg-icon value="icon-fenxiangzhuanqian" :size="1.5"></svg-icon>
-                <span class="r_c_num">Earn</span>
-              </div>
-              <div class="r_c_operation">
                 <svg-icon :value="likeProList.indexOf(processDetails.Id)==-1?'icon-xihuan1':'icon-xihuan'" :size="1.5" @click="handleLike" v-preventReClick></svg-icon>
                 <span class="r_c_num">{{processDetails.Likes}}</span>
               </div>
