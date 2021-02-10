@@ -87,6 +87,7 @@
                   <span class="user_name">{{item.Name}}</span>
                   <rate :value="item.Rank" :isDisabled="true"></rate>
                 </div>
+                <p class="casr_title">{{item.Title}}</p>
                 <p class="card_text" v-html="item.Content"></p>
                 <div class="score_date">
                   <div class="card_bottom">
@@ -799,6 +800,17 @@ export default {
             font-size: 0.875rem;
             user-select: none;
           }
+        }
+        .casr_title{
+          margin: 0 0 8px 0;
+          color: #32323d;
+          font-size: 18px;
+          font-weight: bold;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
         }
         .card_text{
           margin: 0;

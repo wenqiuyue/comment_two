@@ -4,8 +4,8 @@
   <div class="h_home">
     <div class="banner">
       <div class="c_banner">
-        <h1 class="title_1">Behind every comment is the real voice of the user</h1>
-        <h2 class="title_2">Read reviews. Write reviews. Find businesses.</h2>
+        <h1 class="title_1">Listen to free and true voices from the public.</h1>
+        <h2 class="title_2">We support you to write good reviews, and also support you to leave negative reviews.</h2>
         <div class="b_search">
           <el-input class="s_input" v-model="searchData" placeholder="Search for a company or category…"></el-input>
           <el-button class="s_button" type="success" icon="el-icon-search" @click="handleSearch" plain>Search</el-button>
@@ -48,6 +48,7 @@
                 </rate>
               </div>
               <p class="c_user">{{review.Name}} <span class="rev">reviewed</span> <span :data-pro="JSON.stringify(review)" :id="review.ComentId"  class="pro">{{review.ProName}}</span></p>
+              <p class="c_text_title">{{review.Title}}</p>
               <p class="c_text">
                 {{review.Content}}
               </p>
@@ -72,6 +73,7 @@
                 </rate>
               </div>
               <p class="c_user">{{review.Name}} <span class="rev">reviewed</span> <span @click="handleProInfo(review)" class="pro">{{review.ProName}}</span></p>
+              <p class="c_text_title">{{review.Title}}</p>
               <p class="c_text">
                 {{review.Content}}
               </p>
@@ -205,8 +207,7 @@ export default {
           }
           this.hotType=resp[0].data;
         }
-        this.loading=false;
-      })
+      }).finally(()=> this.loading=false);
     },
     /**
      * 查看分类
@@ -365,6 +366,15 @@ export default {
             .pro{
               cursor: pointer;
             }
+          }
+          .c_text_title{
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            margin-bottom: 5px;
+            font-weight: bold;
           }
           .c_text{
             font-size: 0.875rem;
